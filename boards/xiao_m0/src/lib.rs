@@ -171,7 +171,7 @@ pub fn i2c_master(
     scl: impl Into<Scl>,
 ) -> I2c {
     let gclk0 = clocks.gclk0();
-    let clock = &clocks.sercom0_core(&gclk0).unwrap();
+    let clock = &clocks.sercom2_core(&gclk0).unwrap();
     let freq = clock.freq();
     let baud = baud.into();
     let pads = i2c::Pads::new(sda.into(), scl.into());
@@ -200,7 +200,7 @@ pub fn spi_master(
     miso: impl Into<Miso>,
 ) -> Spi {
     let gclk0 = clocks.gclk0();
-    let clock = clocks.sercom4_core(&gclk0).unwrap();
+    let clock = clocks.sercom0_core(&gclk0).unwrap();
     let freq = clock.freq();
     let baud = baud.into();
     let (miso, mosi, sclk) = (miso.into(), mosi.into(), sclk.into());
